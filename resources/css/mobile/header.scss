@@ -1,0 +1,83 @@
+@media (max-width:991px) {
+    html,
+    body {
+        .container{
+            &.container-xxl{
+                padding:0 auto;
+                margin:0 auto;
+            }
+            margin:0 auto;
+            header#site_footer {
+                .right_area {
+                    .header_link_item {
+                        font-size: $small_size;
+                        margin-right: 6px;
+                        min-width: 120px;
+                        max-width: 220px;
+                    }
+
+                    .login_button {
+                        padding: 3px 7px;
+                        min-width: 90px;
+                        max-width:180px;
+                        border-radius: 8px;
+                        margin-right: 8px;
+                    }
+                }
+            }
+
+            .chosen_languages {
+                ul {
+                    li {
+                        width: max-content;
+                        margin-right: 7px;
+                        border-radius: 15px;
+                        padding:3px 8px;
+                        font-size:$small_size;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:767px) {
+    html,
+    body {
+        .container{
+            header#site_footer {
+                .logo {
+                    width: 130px;
+                }
+                .right_area {
+                    .header_link_item {
+                        font-size: $extra_small_size;
+                        margin-right: 5px;
+                        min-width: 70px;
+                    }
+
+                    .login_button {
+                        padding: 3px 4px;
+                        min-width: 70px;
+                        margin-right: 5px;
+                        font-size:$extra_small_size;
+                    }
+                }
+            }
+
+            .chosen_languages {
+                ul {
+                    li {
+                        width: max-content;
+                        margin-right: 0;
+                        border-radius: 15px;
+                        padding:3px 4px;
+                        .text_name{
+                            display:none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

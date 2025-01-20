@@ -1,0 +1,516 @@
+[2024-11-09 21:22:00] dev.ERROR: Trait "App\Models\Soft" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Soft\" not found at /Applications/MAMP/htdocs/DigitalExam/app/Models/AuthAttempts.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-09 21:22:00] dev.ERROR: Trait "App\Models\Soft" not found {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Trait \"App\\Models\\Soft\" not found at /Applications/MAMP/htdocs/DigitalExam/app/Models/AuthAttempts.php:8)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-09 21:53:48] dev.ERROR: Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:40
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(40): PDO->__construct('mysql:host=127....', 'digital_exam', Object(SensitiveParameterValue), Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(100): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(49): Illuminate\Database\Connectors\Connector->tryAgainIfCausedByLostConnection(Object(Doctrine\DBAL\Driver\PDO\Exception), 'mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=127....', Array, Array)
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#6 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\Database\Connection->getPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\Database\Connection->getReadPdo()
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\Database\Connection->getPdoForSelect(true)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(899): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(878): Illuminate\Database\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(722): Illuminate\Database\Connection->handleQueryException(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#23 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#24 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#25 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#26 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#27 {main}
+
+Next Doctrine\DBAL\Driver\PDO\Exception: SQLSTATE[HY000] [2002] Connection refused in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDO/Exception.php:18
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(44): Doctrine\DBAL\Driver\PDO\Exception::new(Object(PDOException))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(100): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(49): Illuminate\Database\Connectors\Connector->tryAgainIfCausedByLostConnection(Object(Doctrine\DBAL\Driver\PDO\Exception), 'mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=127....', Array, Array)
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#6 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\Database\Connection->getPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\Database\Connection->getReadPdo()
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\Database\Connection->getPdoForSelect(true)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(899): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(878): Illuminate\Database\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(722): Illuminate\Database\Connection->handleQueryException(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#23 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#24 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#25 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#26 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#27 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000] [2002] Connection refused (SQL: select * from `auth_attempts` where `auth_attempts`.`deleted_at` is null limit 1) in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(899): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(878): Illuminate\Database\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(722): Illuminate\Database\Connection->handleQueryException(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#14 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#15 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:40
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(40): PDO->__construct('mysql:host=127....', 'digital_exam', Object(SensitiveParameterValue), Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\\DBAL\\Driver\\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(49): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(Doctrine\\DBAL\\Driver\\PDO\\Exception), 'mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=127....', Array, Array)
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#6 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(878): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(722): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#23 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#24 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#25 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#26 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#27 {main}
+
+Next Doctrine\\DBAL\\Driver\\PDO\\Exception: SQLSTATE[HY000] [2002] Connection refused in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDO/Exception.php:18
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(44): Doctrine\\DBAL\\Driver\\PDO\\Exception::new(Object(PDOException))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\\DBAL\\Driver\\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(49): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(Doctrine\\DBAL\\Driver\\PDO\\Exception), 'mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=127....', Array, Array)
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#6 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(878): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(722): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#23 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#24 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#25 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#26 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#27 {main}
+
+Next Illuminate\\Database\\QueryException: SQLSTATE[HY000] [2002] Connection refused (SQL: select * from `auth_attempts` where `auth_attempts`.`deleted_at` is null limit 1) in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(878): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(722): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#14 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#15 {main}
+  thrown at /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-15 10:09:08] dev.ERROR: Uncaught BadMethodCallException: Method Illuminate\Session\Store::first does not exist. in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Manager.php(191): Illuminate\Session\Store->__call('first', Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(338): Illuminate\Support\Manager->__call('first', Array)
+#2 Command line code(1): Illuminate\Support\Facades\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught BadMethodCallException: Method Illuminate\\Session\\Store::first does not exist. in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Manager.php(191): Illuminate\\Session\\Store->__call('first', Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(338): Illuminate\\Support\\Manager->__call('first', Array)
+#2 Command line code(1): Illuminate\\Support\\Facades\\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown at /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-15 10:09:10] dev.ERROR: Uncaught BadMethodCallException: Method Illuminate\Session\Store::first does not exist. in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Manager.php(191): Illuminate\Session\Store->__call('first', Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(338): Illuminate\Support\Manager->__call('first', Array)
+#2 Command line code(1): Illuminate\Support\Facades\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught BadMethodCallException: Method Illuminate\\Session\\Store::first does not exist. in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Manager.php(191): Illuminate\\Session\\Store->__call('first', Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(338): Illuminate\\Support\\Manager->__call('first', Array)
+#2 Command line code(1): Illuminate\\Support\\Facades\\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown at /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-15 10:09:12] dev.ERROR: Uncaught BadMethodCallException: Method Illuminate\Session\Store::first does not exist. in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Manager.php(191): Illuminate\Session\Store->__call('first', Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(338): Illuminate\Support\Manager->__call('first', Array)
+#2 Command line code(1): Illuminate\Support\Facades\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught BadMethodCallException: Method Illuminate\\Session\\Store::first does not exist. in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Manager.php(191): Illuminate\\Session\\Store->__call('first', Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(338): Illuminate\\Support\\Manager->__call('first', Array)
+#2 Command line code(1): Illuminate\\Support\\Facades\\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown at /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:113)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-25 08:27:07] dev.ERROR: Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:40
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(40): PDO->__construct('mysql:host=127....', 'digital_exam', Object(SensitiveParameterValue), Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(45): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=127....', Array, Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\Database\Connection->getPdo()
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\Database\Connection->getReadPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\Database\Connection->getPdoForSelect(true)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#23 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#24 {main}
+
+Next Doctrine\DBAL\Driver\PDO\Exception: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDO/Exception.php:18
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(44): Doctrine\DBAL\Driver\PDO\Exception::new(Object(PDOException))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(45): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=127....', Array, Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\Database\Connection->getPdo()
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\Database\Connection->getReadPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\Database\Connection->getPdoForSelect(true)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#23 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#24 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) (SQL: select * from `exam_results` limit 1) in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#12 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#13 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:40
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(40): PDO->__construct('mysql:host=127....', 'digital_exam', Object(SensitiveParameterValue), Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\\DBAL\\Driver\\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(45): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=127....', Array, Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#23 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#24 {main}
+
+Next Doctrine\\DBAL\\Driver\\PDO\\Exception: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDO/Exception.php:18
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(44): Doctrine\\DBAL\\Driver\\PDO\\Exception::new(Object(PDOException))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\\DBAL\\Driver\\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(45): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=127....', Array, Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#23 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#24 {main}
+
+Next Illuminate\\Database\\QueryException: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) (SQL: select * from `exam_results` limit 1) in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#12 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#13 {main}
+  thrown at /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-25 08:27:08] dev.ERROR: Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:40
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(40): PDO->__construct('mysql:host=127....', 'digital_exam', Object(SensitiveParameterValue), Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(45): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=127....', Array, Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\Database\Connection->getPdo()
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\Database\Connection->getReadPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\Database\Connection->getPdoForSelect(true)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#23 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#24 {main}
+
+Next Doctrine\DBAL\Driver\PDO\Exception: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDO/Exception.php:18
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(44): Doctrine\DBAL\Driver\PDO\Exception::new(Object(PDOException))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(45): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=127....', Array, Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\Database\Connection->getPdo()
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\Database\Connection->getReadPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\Database\Connection->getPdoForSelect(true)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#23 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#24 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) (SQL: select * from `exam_results` limit 1) in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\Database\Eloquent\Builder->first()
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\Database\Eloquent\Model->forwardCallTo(Object(Illuminate\Database\Eloquent\Builder), 'first', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\Database\Eloquent\Model->__call('first', Array)
+#12 Command line code(1): Illuminate\Database\Eloquent\Model::__callStatic('first', Array)
+#13 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:40
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(40): PDO->__construct('mysql:host=127....', 'digital_exam', Object(SensitiveParameterValue), Array)
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\\DBAL\\Driver\\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(45): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=127....', Array, Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#23 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#24 {main}
+
+Next Doctrine\\DBAL\\Driver\\PDO\\Exception: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) in /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDO/Exception.php:18
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(44): Doctrine\\DBAL\\Driver\\PDO\\Exception::new(Object(PDOException))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(67): Doctrine\\DBAL\\Driver\\PDOConnection->__construct('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(45): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=127....', 'digital_exam', '1hCHpj7r72LzbES...', Array)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=127....', Array, Array)
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connectors/ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1181): call_user_func(Object(Closure))
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#13 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#14 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#15 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#16 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#17 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#18 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#19 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#20 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#21 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#22 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#23 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#24 {main}
+
+Next Illuminate\\Database\\QueryException: SQLSTATE[HY000] [1045] Access denied for user 'digital_exam'@'localhost' (using password: YES) (SQL: select * from `exam_results` limit 1) in /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760
+Stack trace:
+#0 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(720): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php(405): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#2 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2705): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#3 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#4 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#5 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(2693): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#6 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#7 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#8 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Concerns/BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#9 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Support/Traits/ForwardsCalls.php(23): Illuminate\\Database\\Eloquent\\Builder->first()
+#10 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2330): Illuminate\\Database\\Eloquent\\Model->forwardCallTo(Object(Illuminate\\Database\\Eloquent\\Builder), 'first', Array)
+#11 /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(2342): Illuminate\\Database\\Eloquent\\Model->__call('first', Array)
+#12 Command line code(1): Illuminate\\Database\\Eloquent\\Model::__callStatic('first', Array)
+#13 {main}
+  thrown at /Applications/MAMP/htdocs/DigitalExam/vendor/laravel/framework/src/Illuminate/Database/Connection.php:760)
+[stacktrace]
+#0 {main}
+"} 

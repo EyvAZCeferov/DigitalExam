@@ -1,0 +1,22 @@
+.slider_image {
+    width: 100%;
+    height: 550px;
+}
+
+.slider_text_content,
+.slider_text_content h1,
+.slider_text_content p {
+    color: #000;
+}
+
+@media(max-width:991px) {
+    .slider_image {
+        width: 100%;
+        height: 350px;
+    }
+    .slider_text_content,
+    .slider_text_content h1,
+    .slider_text_content p {
+        color: #fff;
+    }
+}

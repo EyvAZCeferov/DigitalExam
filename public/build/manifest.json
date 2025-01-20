@@ -1,0 +1,20 @@
+{
+  "resources/css/app.scss": {
+    "file": "assets/app-93a91ae7.css",
+    "isEntry": true,
+    "src": "resources/css/app.scss"
+  },
+  "resources/images/mappinned.svg": {
+    "file": "assets/mappinned-5447814c.svg",
+    "src": "resources/images/mappinned.svg"
+  },
+  "resources/images/yellowbookmark.svg": {
+    "file": "assets/yellowbookmark-88372764.svg",
+    "src": "resources/images/yellowbookmark.svg"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-82b61c5b.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
