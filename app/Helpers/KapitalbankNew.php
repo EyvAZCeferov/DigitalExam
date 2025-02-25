@@ -12,8 +12,8 @@ class KapitalbankNew
 
         'KAPITAL_ORDER_URL' => "https://e-commerce.kapitalbank.az/api/order",
         'KAPITAL_PAYMENT_URL' => "https://e-commerce.kapitalbank.az/flex",
-        'KAPITAL_USERNAME' => "TerminalSys/E1120111",
-        'KAPITAL_PASSWORD' => "9OJRE3@1Bc3K$?%AHwBK",
+        'KAPITAL_USERNAME' => "TerminalSys/E1090100",
+        'KAPITAL_PASSWORD' => "aC(:^nW5R2R)O;zJ6eBm",
         'KAPITAL_TYPE_RID' => "Order_SMS",
         'KAPITAL_CURRENCY' => "AZN",
         'KAPITAL_LANG' => "az",
@@ -49,25 +49,25 @@ class KapitalbankNew
 
             $data = [
                 'order' => [
-                    'typeRid' => $this->parametres['KAPITAL_TYPE_RID_TEST'],
+                    'typeRid' => $this->parametres['KAPITAL_TYPE_RID'],
                     'amount' => $amount ?? 1,
-                    'currency' => $this->parametres['KAPITAL_CURRENCY_TEST'],
-                    'language' => $this->parametres['KAPITAL_LANG_TEST'],
+                    'currency' => $this->parametres['KAPITAL_CURRENCY'],
+                    'language' => $this->parametres['KAPITAL_LANG'],
                     'description' => $order->exam->name['az_name'],
-                    'hppRedirectUrl' => $this->parametres['KAPITAL_REDIRECT_URL_TEST'],
+                    'hppRedirectUrl' => $this->parametres['KAPITAL_REDIRECT_URL'],
                     'hppCofCapturePurposes' => ['Cit']
                 ]
             ];
 
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Basic ' . base64_encode($this->parametres['KAPITAL_USERNAME_TEST'] . ':' . $this->parametres['KAPITAL_PASSWORD_TEST'])
-            ])->post($this->parametres['KAPITAL_ORDER_URL_TEST'], $data);
+                'Authorization' => 'Basic ' . base64_encode($this->parametres['KAPITAL_USERNAME'] . ':' . $this->parametres['KAPITAL_PASSWORD'])
+            ])->post($this->parametres['KAPITAL_ORDER_URL'], $data);
 
             if ($response->successful()) {
                 $responseData = $response->object();
 
-                $payment_url = $this->parametres['KAPITAL_PAYMENT_URL_TEST'] . '?id=' . $responseData->order->id . '&password=' . $responseData->order->password;
+                $payment_url = $this->parametres['KAPITAL_PAYMENT_URL'] . '?id=' . $responseData->order->id . '&password=' . $responseData->order->password;
 
                 $order->frompayment = json_encode($responseData);
                 $order->transaction_id =  $responseData->order->id;

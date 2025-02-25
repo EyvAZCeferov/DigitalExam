@@ -14,20 +14,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Exam extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table='exams';
+    protected $table = 'exams';
     protected $casts = [
         'name' => 'json',
         'content' => 'json',
         'price' => 'double',
         'endirim_price' => 'double',
-        'start_time'=>'timestamp',
-        'rebuy'=>"boolean"
+        'start_time' => 'timestamp',
+        'rebuy' => "boolean"
     ];
 
-    CONST LAYOUTS=[
-        'standart'=>'Standart Rənglər (sarı və mavi)',
-        'sat'=>'SAT rənglər (qara)',
-     ];
+    const LAYOUTS = [
+        'standart' => 'Standart Rənglər (sarı və mavi)',
+        'sat' => 'SAT rənglər (qara)',
+    ];
 
     protected $fillable = [
         'name',
@@ -73,6 +73,25 @@ class Exam extends Model
         return $this->sections->pluck('questions');
     }
 
+    public function getquestions($exam_result)
+    {
+        $questions = collect();
+        $sections = $this->sections;
+        foreach ($sections as $section) {
+            if ($section->question_count > 0) {
+                if ($section->random == true) {
+                    $exam_results_using_in_this_section_questions = $exam_result->answers->where("section_id", $section->id)->pluck("question_id");
+                    $questions = $questions->concat($section->questions->whereIn("id", $exam_results_using_in_this_section_questions));
+                } else {
+                    $questions = $questions->concat($section->questions->take($section->question_count));
+                }
+            } else {
+                $questions = $questions->concat($section->questions);
+            }
+        }
+        return $questions;
+    }
+
     public function results(): HasMany
     {
         return $this->hasMany(ExamResult::class, 'exam_id', 'id');
@@ -110,7 +129,7 @@ class Exam extends Model
     }
     public function user()
     {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
     public function references()
     {

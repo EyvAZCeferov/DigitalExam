@@ -72,6 +72,13 @@
                 </li>
             @endif
 
+            @if (auth('admins')->user()->hasPermissionFor('payment-list'))
+                <li class="{{ url()->current() == route('payments.index') ? 'active' : '' }}">
+                    <a href="{{ route('payments.index') }}"><i class="fa fa-money"></i> <span
+                            class="nav-label">Ödənişlər</span></a>
+                </li>
+            @endif
+
             @if (auth('admins')->user()->hasPermissionFor('role-list'))
                 <li class="{{ url()->current() == route('roles.index') ? 'active' : '' }}">
                     <a href="{{ route('roles.index') }}"><i class="fa fa-users"></i> <span

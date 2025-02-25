@@ -16,7 +16,7 @@
             <button class="btn btn-sm btn-question not_answered footer_question_buttons  @if(isset($exam_result) && !empty($exam_result)) f{{ exam_result_answer_true_or_false_new($value->id,$exam_result->id) }} @endif " type="button"
             data-key="{{ $value->id }}"
                 id="question_row_button_{{ $value->id }}"
-                onclick="getquestion({{ $value->id }})">{{ $key + 1 }}</button>
+                onclick="getquestion('{{ $value->id }}')">{{ $loop->iteration }}</button>
         @endforeach
     </div>
     <div class="center_back_button">

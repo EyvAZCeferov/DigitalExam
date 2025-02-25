@@ -6,7 +6,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "abordage/laravel-html-min": "^0.2.1",
         "doctrine/dbal": "^2.13",
+        "fahlisaputra/laravel-minify": "^1.1",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "intervention/imagecache": "^2.6",
@@ -14,6 +16,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "mcamara/laravel-localization": "^1.8",
+        "nckg/laravel-minify-html": "^1.4",
         "predis/predis": "^2.2",
         "spatie/laravel-medialibrary": "^10.15",
         "spatie/laravel-permission": "^6.1",

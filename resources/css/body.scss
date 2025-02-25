@@ -1111,12 +1111,12 @@ body {
                     .footer_questions {
                         position: relative;
                         display: block;
-                        transform: translateX(-70%);
+                        transform: translateX(-50vw);
                         margin-top: 15%;
-                        -webkit-transform: translateX(-70%);
-                        -moz-transform: translateX(-70%);
-                        -ms-transform: translateX(-70%);
-                        -o-transform: translateX(-70%);
+                        -webkit-transform: translateX(-50vw);
+                        -moz-transform: translateX(-50vw);
+                        -ms-transform: translateX(-50vw);
+                        -o-transform: translateX(-50vw);
 
                         .bottomcorner {
                             display: none;
@@ -1206,7 +1206,6 @@ body {
                             transition: all ease 0.7s;
                             cursor: pointer;
                         }
-
 
 
                         .buttons_top_aplusandminus {
@@ -1395,13 +1394,13 @@ body {
                                     border-radius: 10px;
                                     @extend .classjustifstart;
                                     height: auto;
-                                    transition: all ease 0.8s;
+                                    transition: all ease 0.4s;
                                     position: relative;
                                     padding:5px;
-                                    -webkit-transition: all ease 0.8s;
-                                    -moz-transition: all ease 0.8s;
-                                    -ms-transition: all ease 0.8s;
-                                    -o-transition: all ease 0.8s;
+                                    -webkit-transition: all ease 0.4s;
+                                    -moz-transition: all ease 0.4s;
+                                    -ms-transition: all ease 0.4s;
+                                    -o-transition: all ease 0.4s;
                                     .sizing_counters_forquestion_value{
                                         width:30px;
                                         border:1px solid #ccc;
@@ -1681,8 +1680,8 @@ body {
                                 }
                                 .content_exam_info {
                                     width:75%;
-                                    margin:5px 0;
-                                    margin-left:63px;
+                                    margin:auto auto;
+                                    // margin-left:63px;
                                     height:auto;
                                     min-height:100%;
                                     overflow-y:auto;
@@ -1964,6 +1963,10 @@ body {
                     width: 80vw;
                 }
 
+                // .dcg-header{
+                //     display: none;
+                // }
+
                 .modal-dialog,
                 .modal-content {
                     width: 100%;
@@ -1975,6 +1978,7 @@ body {
                 }
 
                 &#desmoscalculator{
+                    position: absolute;
                     .modal-content{
                         position:relative;
                         .dcg-header-container{
@@ -1984,6 +1988,12 @@ body {
                             position:absolute;
                             top:15px;
                             right:40px;
+                            border-radius:10px;
+                        }
+                        .desmos_pin_left{
+                            position:absolute;
+                            top:15px;
+                            right:80px;
                             border-radius:10px;
                         }
                     }
@@ -2198,8 +2208,8 @@ body {
                                     &:hover,
                                     &:focus,
                                     &:active{
-                                        border-color: #4d4c4c;
-                                        background-color: #4d4c4c;
+                                        border-color: #949393;
+                                        background-color: #949393;
                                         color: #fff;
 
                                         .rowNumber,
@@ -2210,7 +2220,7 @@ body {
 
                                             &.rowNumber {
                                                 background-color: #fff;
-                                                color: #4d4c4c;
+                                                color: #949393;
                                             }
                                         }
                                     }
@@ -3619,3 +3629,14 @@ body {
         }
     }
 }
+
+
+.ui-resizable-handle {
+    background: #ddd;
+    border: 2px solid #aaa;
+    opacity: 0.7;
+    z-index: 90; 
+    width: 15px;      /* Veya ihtiyaca göre 20px, 25px gibi değerler */
+    height: 15px;
+    cursor:pointer;
+  }

@@ -53,7 +53,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('front/assets/favicons/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
-    <base href="{{ env('APP_DOMAIN') }}" />
+    <base href="{{ request()->getSchemeAndHttpHost() }}" />
     {{-- Favicon --}}
     @stack('css')
 
@@ -73,6 +73,7 @@
             void(0)
         }
     </script>
+   
 </head>
 
 <body class="pageonmobile_exam_page">
@@ -92,7 +93,8 @@
     <script type="text/javascript" src="{{ asset('front/assets/js/jquery.min.js') }}"></script>
     <script type="text/javascript" defer src="{{ asset('front/assets/js/eyvaz/vendor/jquery-ui/jquery-ui.min.js') }}">
     </script>
-    <script type="text/javascript" src="{{ asset('front/assets/js/eyvaz/base.js') }}"></script>
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="{{ asset('front/assets/js/eyvaz/base.js?v='.time()) }}"></script>
     {{-- Katex --}}
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
         integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous">
@@ -102,17 +104,6 @@
         onload="renderMathInElement(document.body);"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.js"
         integrity="sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=" crossorigin="anonymous"></script>
-    <script>
-        window.WebFontConfig = {
-            custom: {
-                families: ['KaTeX_AMS', 'KaTeX_Caligraphic:n4,n7', 'KaTeX_Fraktur:n4,n7',
-                    'KaTeX_Main:n4,n7,i4,i7', 'KaTeX_Math:i4,i7', 'KaTeX_Script',
-                    'KaTeX_SansSerif:n4,n7,i4', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
-                    'KaTeX_Size4', 'KaTeX_Typewriter'
-                ],
-            },
-        };
-    </script>
     {{-- Katex --}}
 
     <script async crossorigin defer>
@@ -139,12 +130,31 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const images = document.querySelectorAll("img");
-            images.forEach((img) => {
-                if (!img.hasAttribute("loading")) {
-                    img.setAttribute("loading", "lazy");
-                }
-            });
+
+            window.WebFontConfig = {
+                custom: {
+                    families: ['KaTeX_AMS', 'KaTeX_Caligraphic:n4,n7', 'KaTeX_Fraktur:n4,n7',
+                        'KaTeX_Main:n4,n7,i4,i7', 'KaTeX_Math:i4,i7', 'KaTeX_Script',
+                        'KaTeX_SansSerif:n4,n7,i4', 'KaTeX_Size1', 'KaTeX_Size2', 'KaTeX_Size3',
+                        'KaTeX_Size4', 'KaTeX_Typewriter'
+                    ],
+                },
+            };
+
+            // const observer = new MutationObserver((mutations) => {
+            //     mutations.forEach((mutation) => {
+            //         mutation.addedNodes.forEach((node) => {
+            //             if (node.tagName === "IMG" && !node.hasAttribute("loading")) {
+            //                 node.setAttribute("loading", "lazy");
+            //             }
+            //         });
+            //     });
+            // });
+
+            // observer.observe(document.body, {
+            //     childList: true,
+            //     subtree: true
+            // });
         });
     </script>
     @stack('js')

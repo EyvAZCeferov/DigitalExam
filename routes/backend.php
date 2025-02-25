@@ -19,6 +19,7 @@ use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\ReferencesController;
 use App\Http\Controllers\backend\CouponCodesController;
 use App\Http\Controllers\backend\ExamStartPageController;
+use App\Http\Controllers\backend\PaymentsController;
 use App\Http\Controllers\backend\StandartPagesController;
 use App\Http\Controllers\backend\StudentRatingsController;
 
@@ -96,6 +97,14 @@ Route::group([
             Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit');
             Route::put('/update/{id}', [RoleController::class, 'update'])->name('roles.update');
             Route::get('/delete/{id}', [RoleController::class, 'delete'])->name('roles.delete');
+        });
+
+        Route::group([
+            'prefix' => 'payments',
+        ], function () {
+            Route::get('/', [PaymentsController::class, 'index'])->name('payments.index');
+            Route::get('/show/{id}', [PaymentsController::class, 'update'])->name('payments.update');
+            Route::get('/delete/{id}', [PaymentsController::class, 'delete'])->name('payments.delete');
         });
 
 

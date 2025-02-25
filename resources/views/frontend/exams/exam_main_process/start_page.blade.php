@@ -25,8 +25,9 @@
 
 
                         <div class="mt-4 font-weight-bold agree_with_you">
-                            <input type="checkbox" name="agree_with_you" id="agree_with_you">
-                            <label for="agree_with_you">&nbsp; @lang('additional.pages.exams.iamagreewithyou')</label>
+                            <input type="checkbox" name="agree_with_you" class="agree_with_you"
+                                id="agree_with_you_{{ $key }}">
+                            <label for="agree_with_you_{{ $key }}">&nbsp; @lang('additional.pages.exams.iamagreewithyou')</label>
                         </div>
                     </div>
                     @if (isset($page->image) && !empty($page->image))
@@ -57,24 +58,39 @@
 @endsection
 
 @push('js')
-    <script defer>
-        $("input#agree_with_you").on('change', function() {
-            if (this.value == "on") {
-                this.value = "off";
-                $(".next_button").removeClass("disabled");
+
+    <script>
+        
+        function updateButtonState(pageKey) {
+            var allChecked = $(`#${pageKey}_start_page input.agree_with_you`).toArray().every(input => input.checked);
+
+            if (allChecked) {
+                $(`#${pageKey}_start_page .next_button`).removeClass("disabled");
             } else {
-                this.value = "on";
-                $(".next_button").addClass("disabled");
+                $(`#${pageKey}_start_page .next_button`).addClass("disabled");
             }
+        }
+
+        $("input.agree_with_you").on('change', function() {
+            var pageKey = $(this).closest('.exam_start_page').attr('id').split('_')[0]; // Sayfanın ID'sini al
+            updateButtonState(pageKey);
         });
+
+        setInterval(() => {
+            $(".exam_start_page").each(function() {
+                var pageKey = $(this).attr('id').split('_')[0];
+                updateButtonState(pageKey);
+            });
+        }, 1000);
+
 
         function tonextpage(nowid, process = null) {
             var nowelement = $(`#${nowid}_start_page`);
-            var coupon_code_inp=$("#coupon_code").val()??'';
+            var coupon_code_inp = $("#coupon_code").val() ?? '';
             if (process == 'next') {
                 var new_id = nowid + 1;
                 var nextelement = $(`#${new_id}_start_page`);
-                $("input#agree_with_you").val();
+
                 $(".next_button").addClass("disabled");
                 nowelement.removeClass("show");
                 nowelement.addClass("hide");
@@ -92,7 +108,7 @@
             } else {
                 var new_id = nowid - 1;
                 var nextelement = $(`#${new_id}_start_page`);
-                $("input#agree_with_you").val();
+
                 nowelement.removeClass("show");
                 nowelement.addClass("hide");
                 nextelement.addClass("show");

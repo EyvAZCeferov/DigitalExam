@@ -16,7 +16,7 @@
             <button class="btn btn-sm btn-question not_answered footer_question_buttons" type="button"
             data-key="{{ $value->id }}"
                 id="question_row_button_{{ $value->id }}"
-                onclick="getquestion({{ $value->id }})">{{ $key + 1 }}</button>
+                onclick="getquestion('{{ $value->id }}')">{{ $loop->iteration }}</button>
         @endforeach
     </div>
     <div class="center_back_button">

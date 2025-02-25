@@ -1,8 +1,8 @@
 <header id="site_footer">
     @if (!empty(settings()) && isset(settings()->logo) && !empty(settings()->logo))
         <div class="logo">
-            <a href="{{ route('page.welcome') }}">
-                <img src="{{ settings("logo") }}"
+            <a href="{{ route(name: 'page.welcome') }}">
+                <img src="{{ getImageUrl(settings()->logo, 'settings') }}""
                     alt="{{ settings("name") }}" />
             </a>
         </div>

@@ -49,12 +49,12 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('front/assets/favicons/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
-    <base href="{{ env('APP_DOMAIN') }}" />
+    <base href="{{ request()->getSchemeAndHttpHost() }}" />
     {{-- Favicon --}}
 
     {{-- Analystics Scripts --}}
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('G_MENSURENT_ID') }}"></script>
+    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('G_MENSURENT_ID') }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -64,7 +64,7 @@
         gtag('js', new Date());
 
         gtag('config', '{{ env('G_MENSURENT_ID') }}');
-    </script>
+    </script> --}}
     {{-- Analystics Scripts --}}
 
     @stack('css')

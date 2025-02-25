@@ -439,7 +439,7 @@
                                             }
 
                                             var element = `<div class="question_list_element" id="question_list_element_${n.data[i].id}">
-                                        <div onclick="getquestion(${n.data[i].id})" class="question_name">${i+1}) ${contentWithoutImages}</div>
+                                        <div onclick="getquestion('${n.data[i].id}')" class="question_name">${i+1}) ${contentWithoutImages}</div>
                                         <button class='btn btn-outline-danger btn-sm' type='submit' onclick='deletequestion(${n.data[i].id},"question")'><i class='fa fa-trash'></i></i></button>
                                         </div>`;
                                             questions_list.innerHTML += element;

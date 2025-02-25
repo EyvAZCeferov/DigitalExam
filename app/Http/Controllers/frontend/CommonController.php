@@ -34,6 +34,7 @@ class CommonController extends Controller
     public function examFinish(Request $request)
     {
         try {
+            // sleep(20);
             $result = collect();
             $nextsection = false;
             $nexturl = '';
@@ -74,192 +75,201 @@ class CommonController extends Controller
                 if (!empty($request->answers) && count($request->answers) > 0) {
                     foreach ($request->answers as $section_id => $answers) {
                         foreach ($answers as $question_id => $answer) {
+                            $answer = strip_tags_with_whitespace($answer);
+                            $answer = str_replace('\'', '', $answer);
+                            $answer = str_replace('"', '', $answer);
+
+                            $question_id = strip_tags_with_whitespace($question_id);
+                            $question_id = str_replace('\'', '', $question_id);
+                            $question_id = str_replace('"', '', $question_id);
+
                             $question = ExamQuestion::where("id", $question_id)->first();
-                            $time_reply = $request->question_time_replies[$question_id] ?? 0;
-                            $resultAnswer = ExamResultAnswer::where("question_id", $question_id)->where("result_id", $result->id ?? $request->exam_result_id)->first();
-                            // if (!empty($question) && !empty($section)) {
-                            if (empty($resultAnswer) && !isset($resultAnswer->id))
-                                $resultAnswer = new ExamResultAnswer();
+                            if (!empty($question)) {
+                                $time_reply = $request->question_time_replies[$question_id] ?? 0;
+                                $resultAnswer = ExamResultAnswer::where("question_id", $question_id)->where("result_id", $result->id ?? $request->exam_result_id)->first();
 
-                            if ($question->type == 1 || $question->type == 5) {
-                                $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
-                                $resultAnswer->section_id = $section_id;
-                                $resultAnswer->question_id = $question->id;
-                                $resultAnswer->answer_id = $answer;
-                                $resultAnswer->result = $answer == $question->correctAnswer()?->id ? 1 : 0;
-                                $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
-                                $resultAnswer->save();
-                            } else if ($question->type == 2) {
-                                $answer = array_map('intval', $answer);
-                                $user_answer = serialize($answer);
-                                $correct_answer = serialize($question->correctAnswer()?->pluck('id')->toArray());
-                                $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
-                                $resultAnswer->section_id = $section_id;
-                                $resultAnswer->question_id = $question->id;
-                                $resultAnswer->answers = $answer;
-                                $resultAnswer->result = $user_answer == $correct_answer ? 1 : 0;
-                                $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
-                                $resultAnswer->save();
-                            } else if ($question->type == 3) {
-                                $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
-                                $resultAnswer->section_id = $section_id;
-                                $resultAnswer->question_id = $question->id;
-                                $resultAnswer->value = $answer;
-                                $correctAnswer = $question->correctAnswer()?->answer;
-                                if ($correctAnswer && !empty($answer)) {
-                                    $correctAnswersArray = explode(',', strip_tags_with_whitespace($correctAnswer));
-                                    $result = in_array(strip_tags_with_whitespace($answer), $correctAnswersArray) ? 1 : 0;
-                                    $resultAnswer->result = $result;
-                                } else {
-                                    $resultAnswer->result = 0;
-                                }
-                                $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
-                                $resultAnswer->save();
-                            } else if ($question->type == 4) {
-                                if ($answer['answered'] == 1) {
-                                    if (!empty($answer['questions']) && !empty($answer['answers'])) {
-                                        $newArray = array_combine($answer['questions'], $answer['answers']);
-                                        $newArrayEncoded = [];
-                                        foreach ($newArray as $key => $value) {
-                                            // Remove unwanted characters from keys and values
-                                            $newArrayEncoded[strip_tags_with_whitespace($key)] = strip_tags_with_whitespace($value);
+                                if (empty($resultAnswer) && !isset($resultAnswer->id))
+                                    $resultAnswer = new ExamResultAnswer();
+
+                                if ($question->type == 1 || $question->type == 5) {
+                                    $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
+                                    $resultAnswer->section_id = $section_id;
+                                    $resultAnswer->question_id = $question->id;
+                                    $resultAnswer->answer_id = $answer;
+                                    $resultAnswer->result = $answer == $question->correctAnswer()?->id ? 1 : 0;
+                                    $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
+                                    $resultAnswer->save();
+                                } else if ($question->type == 2) {
+                                    $answer = array_map('intval', $answer);
+                                    $user_answer = serialize($answer);
+                                    $correct_answer = serialize($question->correctAnswer()?->pluck('id')->toArray());
+                                    $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
+                                    $resultAnswer->section_id = $section_id;
+                                    $resultAnswer->question_id = $question->id;
+                                    $resultAnswer->answers = $answer;
+                                    $resultAnswer->result = $user_answer == $correct_answer ? 1 : 0;
+                                    $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
+                                    $resultAnswer->save();
+                                } else if ($question->type == 3) {
+                                    $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
+                                    $resultAnswer->section_id = $section_id;
+                                    $resultAnswer->question_id = $question->id;
+                                    $resultAnswer->value = $answer;
+                                    $correctAnswer = $question->correctAnswer()?->answer;
+                                    if ($correctAnswer && !empty($answer)) {
+                                        $correctAnswersArray = explode(',', strip_tags_with_whitespace($correctAnswer));
+                                        $result = in_array(strip_tags_with_whitespace($answer), $correctAnswersArray) ? 1 : 0;
+                                        $resultAnswer->result = $result;
+                                    } else {
+                                        $resultAnswer->result = 0;
+                                    }
+                                    $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
+                                    $resultAnswer->save();
+                                } else if ($question->type == 4) {
+                                    if ($answer['answered'] == 1) {
+                                        if (!empty($answer['questions']) && !empty($answer['answers'])) {
+                                            $newArray = array_combine($answer['questions'], $answer['answers']);
+                                            $newArrayEncoded = [];
+                                            foreach ($newArray as $key => $value) {
+                                                // Remove unwanted characters from keys and values
+                                                $newArrayEncoded[strip_tags_with_whitespace($key)] = strip_tags_with_whitespace($value);
+                                            }
+
+                                            $array2 = $question->answers->pluck('answer')->toArray();
+                                            $newArray2 = [];
+                                            foreach ($array2 as $value) {
+                                                $decodedValue = json_decode($value, true);
+                                                // Remove unwanted characters from the decoded question and answer content
+                                                $newArray2[strip_tags_with_whitespace($decodedValue['question_content'])] = strip_tags_with_whitespace($decodedValue['answer_content']);
+                                            }
+
+                                            // Compare the two arrays
+                                            $difference = ($newArrayEncoded === $newArray2) ? true : false;
+
+                                            $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
+                                            $resultAnswer->section_id = $section_id;
+                                            $resultAnswer->question_id = $question->id;
+                                            $resultAnswer->value = json_encode($newArray);
+                                            $resultAnswer->result = $difference;
+                                            $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
+                                            $resultAnswer->save();
                                         }
-
-                                        $array2 = $question->answers->pluck('answer')->toArray();
-                                        $newArray2 = [];
-                                        foreach ($array2 as $value) {
-                                            $decodedValue = json_decode($value, true);
-                                            // Remove unwanted characters from the decoded question and answer content
-                                            $newArray2[strip_tags_with_whitespace($decodedValue['question_content'])] = strip_tags_with_whitespace($decodedValue['answer_content']);
-                                        }
-
-                                        // Compare the two arrays
-                                        $difference = ($newArrayEncoded === $newArray2) ? true : false;
-
-                                        $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
-                                        $resultAnswer->section_id = $section_id;
-                                        $resultAnswer->question_id = $question->id;
-                                        $resultAnswer->value = json_encode($newArray);
-                                        $resultAnswer->result = $difference;
-                                        $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
-                                        $resultAnswer->save();
                                     }
                                 }
                             }
-
-                            // }
                         }
                     }
                 }
-
 
                 $examquestions = ExamQuestion::whereIn("exam_section_id", $exam->sections->pluck("id"))->get();
 
                 if (!empty($examquestions) && count($examquestions) > 0) {
                     foreach ($examquestions as $question) {
-                        $questtype = 'radio';
-                        switch ($question->type) {
-                            case 1:
-                                $questtype = 'radio';
-                                break;
-                            case 2:
-                                $questtype = 'checkbox';
-                                break;
-                            case 3:
-                                $questtype = 'textbox';
-                                break;
-                            case 4:
-                                $questtype = 'match';
-                                break;
-                            case 5:
-                                $questtype = 'audio';
-                                break;
-                            default:
-                                $questtype = 'radio';
-                        }
-                        if (empty($result) && !isset($result->id))
-                            $result = ExamResult::where("id", $request->exam_result_id ?? session()->get("result_id"))->first();
+                        if ($question) {
+                            $questtype = 'radio';
+                            switch ($question->type) {
+                                case 1:
+                                    $questtype = 'radio';
+                                    break;
+                                case 2:
+                                    $questtype = 'checkbox';
+                                    break;
+                                case 3:
+                                    $questtype = 'textbox';
+                                    break;
+                                case 4:
+                                    $questtype = 'match';
+                                    break;
+                                case 5:
+                                    $questtype = 'audio';
+                                    break;
+                                default:
+                                    $questtype = 'radio';
+                            }
+                            if (empty($result) && !isset($result->id))
+                                $result = ExamResult::where("id", $request->exam_result_id ?? session()->get("result_id"))->first();
 
-                        $result_id = $result->id ?? $request->exam_result_id;
-                        if (empty($result_id))
-                            $result_id = session()->get('result_id');
+                            $result_id = $result->id ?? $request->exam_result_id;
+                            if (empty($result_id))
+                                $result_id = session()->get('result_id');
 
-                        $exam_id = $result->exam_id ?? $exam->id;
-                        if (empty($result_id))
-                            $exam_id = $request->exam_id ?? session()->get('result_id');
+                            $exam_id = $result->exam_id ?? $exam->id;
+                            if (empty($result_id))
+                                $exam_id = $request->exam_id ?? session()->get('result_id');
 
-                        $user_id = $result->user_id ?? $request->user_id;
-                        if (empty($user_id))
-                            $user_id = session()->get('user_id');
+                            $user_id = $result->user_id ?? $request->user_id;
+                            if (empty($user_id))
+                                $user_id = session()->get('user_id');
 
-                        $session_key = $result_id . $exam_id . $user_id . $question->id . $questtype;
-                        $getresultanswer = ExamResultAnswer::where("result_id", $result->id ?? $request->exam_result_id)
-                            ->where('question_id', $question->id)
-                            ->first();
-                        if (empty($getresultanswer) && !isset($getresultanswer->id)) {
+                            $session_key = $result_id . $exam_id . $user_id . $question->id . $questtype;
+                            $getresultanswer = ExamResultAnswer::where("result_id", $result->id ?? $request->exam_result_id)
+                                ->where('question_id', $question->id)
+                                ->first();
+                            if (empty($getresultanswer) && !isset($getresultanswer->id)) {
 
-                            $value = session()->has($session_key) ? session()->get($session_key) : null;
-                            if (!empty($value)) {
-                                if ($question->type == 1 || $question->type == 5) {
-                                    $resultAnswer = new ExamResultAnswer();
-                                    $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
-                                    $resultAnswer->section_id = $question->section_id;
-                                    $resultAnswer->question_id = $question->id;
-                                    $resultAnswer->answer_id = $value;
-                                    $resultAnswer->result = $value == $question->correctAnswer()?->id ? 1 : 0;
-                                    $resultAnswer->time_reply = 5;
-                                    $resultAnswer->save();
-                                } else if ($question->type == 2) {
-                                    $answer = array_map('intval', $value);
-                                    $user_answer = serialize($answer);
-                                    $correct_answer = serialize($question->correctAnswer()?->pluck('id')->toArray());
-                                    $resultAnswer = new ExamResultAnswer();
-                                    $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
-                                    $resultAnswer->section_id = $question->section_id;
-                                    $resultAnswer->question_id = $question->id;
-                                    $resultAnswer->answers = $answer;
-                                    $resultAnswer->result = $user_answer == $correct_answer ? 1 : 0;
-                                    $resultAnswer->time_reply = 5;
-                                    $resultAnswer->save();
-                                } else if ($question->type == 3) {
-                                    $resultAnswer = new ExamResultAnswer();
-                                    $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
-                                    $resultAnswer->section_id = $question->section_id;
-                                    $resultAnswer->question_id = $question->id;
-                                    $resultAnswer->value = $value;
-                                    $correctAnswer = $question->correctAnswer()?->answer;
-                                    if ($correctAnswer && !empty($value)) {
-                                        $correctAnswersArray = explode(',', strip_tags_with_whitespace($correctAnswer));
-                                        $resultAnswer->result = in_array(strip_tags_with_whitespace($value), $correctAnswersArray) ? 1 : 0;
-                                    } else {
-                                        $resultAnswer->result = 0;
-                                    }
-                                    $resultAnswer->time_reply = 5;
-                                    $resultAnswer->save();
-                                } else if ($question->type == 4) {
-                                    if ($value['answered'] == 1) {
-                                        if (!empty($value['questions']) && !empty($value['answers'])) {
-                                            $newArray = array_combine($value['questions'], $value['answers']);
-                                            $newArrayEncoded = [];
-                                            foreach ($newArray as $key => $value) {
-                                                $newArrayEncoded[strip_tags_with_whitespace($key)] = strip_tags_with_whitespace($value);
+                                $value = session()->has($session_key) ? session()->get($session_key) : null;
+                                if (!empty($value)) {
+                                    if ($question->type == 1 || $question->type == 5) {
+                                        $resultAnswer = new ExamResultAnswer();
+                                        $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
+                                        $resultAnswer->section_id = $question->section_id;
+                                        $resultAnswer->question_id = $question->id;
+                                        $resultAnswer->answer_id = $value;
+                                        $resultAnswer->result = $value == $question->correctAnswer()?->id ? 1 : 0;
+                                        $resultAnswer->time_reply = 5;
+                                        $resultAnswer->save();
+                                    } else if ($question->type == 2) {
+                                        $answer = array_map('intval', $value);
+                                        $user_answer = serialize($answer);
+                                        $correct_answer = serialize($question->correctAnswer()?->pluck('id')->toArray());
+                                        $resultAnswer = new ExamResultAnswer();
+                                        $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
+                                        $resultAnswer->section_id = $question->section_id;
+                                        $resultAnswer->question_id = $question->id;
+                                        $resultAnswer->answers = $answer;
+                                        $resultAnswer->result = $user_answer == $correct_answer ? 1 : 0;
+                                        $resultAnswer->time_reply = 5;
+                                        $resultAnswer->save();
+                                    } else if ($question->type == 3) {
+                                        $resultAnswer = new ExamResultAnswer();
+                                        $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
+                                        $resultAnswer->section_id = $question->section_id;
+                                        $resultAnswer->question_id = $question->id;
+                                        $resultAnswer->value = $value;
+                                        $correctAnswer = $question->correctAnswer()?->answer;
+                                        if ($correctAnswer && !empty($value)) {
+                                            $correctAnswersArray = explode(',', strip_tags_with_whitespace($correctAnswer));
+                                            $resultAnswer->result = in_array(strip_tags_with_whitespace($value), $correctAnswersArray) ? 1 : 0;
+                                        } else {
+                                            $resultAnswer->result = 0;
+                                        }
+                                        $resultAnswer->time_reply = 5;
+                                        $resultAnswer->save();
+                                    } else if ($question->type == 4) {
+                                        if ($value['answered'] == 1) {
+                                            if (!empty($value['questions']) && !empty($value['answers'])) {
+                                                $newArray = array_combine($value['questions'], $value['answers']);
+                                                $newArrayEncoded = [];
+                                                foreach ($newArray as $key => $value) {
+                                                    $newArrayEncoded[strip_tags_with_whitespace($key)] = strip_tags_with_whitespace($value);
+                                                }
+                                                $array2 = $question->answers->pluck('answer')->toArray();
+                                                $newArray2 = [];
+                                                foreach ($array2 as $value) {
+                                                    $decodedValue = json_decode($value, true);
+                                                    $newArray2[strip_tags_with_whitespace($decodedValue['question_content'])] = strip_tags_with_whitespace($decodedValue['answer_content']);
+                                                }
+
+                                                $difference = ($newArrayEncoded === $newArray2) ? true : false;
+                                                $resultAnswer = new ExamResultAnswer();
+                                                $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
+                                                $resultAnswer->section_id = $question->section_id;
+                                                $resultAnswer->question_id = $question->id;
+                                                $resultAnswer->value = json_encode($newArray);
+                                                $resultAnswer->result = $difference;
+                                                $resultAnswer->time_reply = 5;
+                                                $resultAnswer->save();
                                             }
-                                            $array2 = $question->answers->pluck('answer')->toArray();
-                                            $newArray2 = [];
-                                            foreach ($array2 as $value) {
-                                                $decodedValue = json_decode($value, true);
-                                                $newArray2[strip_tags_with_whitespace($decodedValue['question_content'])] = strip_tags_with_whitespace($decodedValue['answer_content']);
-                                            }
-
-                                            $difference = ($newArrayEncoded === $newArray2) ? true : false;
-                                            $resultAnswer = new ExamResultAnswer();
-                                            $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
-                                            $resultAnswer->section_id = $question->section_id;
-                                            $resultAnswer->question_id = $question->id;
-                                            $resultAnswer->value = json_encode($newArray);
-                                            $resultAnswer->result = $difference;
-                                            $resultAnswer->time_reply = 5;
-                                            $resultAnswer->save();
                                         }
                                     }
                                 }
@@ -385,8 +395,9 @@ class CommonController extends Controller
             ->findOrFail($result_id);
 
         calc_this_exam($exam_result->exam_id, $exam_result->user_id);
+        $exam = $exam_result->exam;
 
-        return view('frontend.exams.result', compact('exam_result'));
+        return view('frontend.exams.result', compact('exam_result', 'exam'));
     }
     public function examResult($subdomain = null, $result_id)
     {
@@ -394,7 +405,8 @@ class CommonController extends Controller
             ->orderByDesc('id')
             ->findOrFail($result_id);
         calc_this_exam($exam_result->exam_id, $exam_result->user_id);
-        return view('frontend.exams.result', compact('exam_result'));
+        $exam = $exam_result->exam;
+        return view('frontend.exams.result', compact('exam_result', 'exam'));
     }
     public function notfound()
     {
@@ -408,12 +420,6 @@ class CommonController extends Controller
                     ->with(['sections', 'references'])
                     ->first();
                 $exam_start_pages = collect();
-
-                // if(session()->has('selected_section') && (session()->get('selected_section')==$request->selected_section)){
-                //     $nexturl=exam_finish_and_calc($request->exam_id,Auth::guard('users')->id());
-                //     if(!empty($nexturl))
-                //         return redirect($nexturl);
-                // }
 
                 session()->put('selected_section', $request->selected_section ?? 0);
                 session()->put('changedLang', app()->getLocale() ?? 'az');
@@ -461,32 +467,15 @@ class CommonController extends Controller
                             }
                         }
                     } else {
-                        if ($exam_result->payed == true) {
-                            if ($exam->questionCount() > 0) {
-                                session()->put('result_id', $exam_result->id);
-                                session()->put('exam_id', $exam_result->exam_id);
-                                session()->put('user_id', $exam_result->user_id);
-                                return view("frontend.exams.exam_main_process.index", compact('exam', 'exam_result'));
-                            } else {
-                                $exam_result->delete();
-                                return redirect()->back()->with('info', trans('additional.messages.examnotfound'));
-                            }
+
+                        if ($exam->questionCount() > 0) {
+                            session()->put('result_id', $exam_result->id);
+                            session()->put('exam_id', $exam_result->exam_id);
+                            session()->put('user_id', $exam_result->user_id);
+                            return view("frontend.exams.exam_main_process.index", compact('exam', 'exam_result'));
                         } else {
-                            $payment = payments(Auth::guard("users")->id(), $exam->id, $exam_result->id, null, null, null);
-                            if (!empty($payment) && isset($payment->id)) {
-                                $payment_link = $this->payment_start($request, $exam, $exam_result, !empty($payment->coupon) ? $payment->coupon : null, $payment->ammount ?? ($exam->endirim_price ?? $exam->price));
-                                if (!empty($payment_link))
-                                    return redirect($payment_link);
-                                else
-                                    return $this->notfound();
-                            } else {
-                                if ($exam->questionCount() > 0) {
-                                    return $this->set_exam($request);
-                                } else {
-                                    $exam_result->delete();
-                                    return redirect()->back()->with('info', trans('additional.messages.examnotfound'));
-                                }
-                            }
+                            $exam_result->delete();
+                            return redirect()->back()->with('info', trans('additional.messages.examnotfound'));
                         }
                     }
                 } else {

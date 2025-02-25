@@ -16,12 +16,12 @@
         @php($questions[] = ['content' => $json_answers['question_content'], 'elem_id' => $value->id])
         @php($answers[] = ['content' => $json_answers['answer_content'], 'elem_id' => $value->id])
     @endforeach
-    <input type="hidden" name="answers[{{ $question->exam_section_id }}][{{ $question->id }}][answered]"
+    <input type="hidden" name="answers[{{ $question->exam_section_id }}]['{{ $question->id }}'][answered]"
         id="question_match_element_{{ $question->exam_section_id }}_{{ $question->id }}" value="0">
     <div class="column question_match_area" id="question_match_area_question_{{ $question->id }}">
         @foreach ($questions as $key => $value)
             <div class="column_element question_match_element" id="question_match_element_{{ $value['elem_id'] }}">
-                <input type="hidden" name="answers[{{ $question->exam_section_id }}][{{ $question->id }}][questions][]"
+                <input type="hidden" name="answers[{{ $question->exam_section_id }}]['{{ $question->id }}'][questions][]"
                     value="{!! $value['content'] !!}">
                 {!! $value['content'] !!}
             </div>
@@ -35,7 +35,7 @@
         @foreach ($shuffledAnswers as $key => $value)
             <div class="column_element answer_match_element" id="answer_match_element_{{ $value['elem_id'] }}"
                 data-question_id="{{ $question->id }}" data-section_id="{{ $question->exam_section_id }}">
-                <input type="hidden" name="answers[{{ $question->exam_section_id }}][{{ $question->id }}][answers][]"
+                <input type="hidden" name="answers[{{ $question->exam_section_id }}]['{{ $question->id }}'][answers][]"
                     value="{!! $value['content'] !!}">
                 {!! $value['content'] !!}
             </div>
@@ -62,13 +62,13 @@
                 @php($questions2[] = ['content' => $key])
                 @php($answers2[] = ['content' => $value])
             @endforeach
-            <input type="hidden" name="answers[{{ $question->exam_section_id }}][{{ $question->id }}][answered]"
+            <input type="hidden" name="answers[{{ $question->exam_section_id }}]['{{ $question->id }}'][answered]"
                 id="question_match_element_{{ $question->exam_section_id }}_{{ $question->id }}" value="0">
             <div class="column question_match_area" id="question_match_area_question_{{ $question->id }}">
                 @foreach ($questions2 as $key => $value)
                     <div class="column_element question_match_element">
                         <input type="hidden"
-                            name="answers[{{ $question->exam_section_id }}][{{ $question->id }}][questions][]"
+                            name="answers[{{ $question->exam_section_id }}]['{{ $question->id }}'][questions][]"
                             value="{!! $value['content'] !!}">
                         {!! $value['content'] !!}
                     </div>
@@ -80,7 +80,7 @@
                     <div class="column_element answer_match_element" data-question_id="{{ $question->id }}"
                         data-section_id="{{ $question->exam_section_id }}">
                         <input type="hidden"
-                            name="answers[{{ $question->exam_section_id }}][{{ $question->id }}][answers][]"
+                            name="answers[{{ $question->exam_section_id }}]['{{ $question->id }}'][answers][]"
                             value="{!! $value['content'] !!}">
                         {!! $value['content'] !!}
                     </div>

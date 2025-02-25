@@ -7,6 +7,9 @@ return [
     'role-create',
     'role-update',
 
+    'payment-list',
+    'payment-delete',
+
     'admin-list',
     'admin-delete',
     'admin-create',

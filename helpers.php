@@ -613,9 +613,9 @@ if (!function_exists('answer_result_true_or_false')) {
 if (!function_exists('your_answer_result_true_or_false')) {
     function your_answer_result_true_or_false($question_id, $value, $result_id)
     {
-        $cacheKey = "your_answer_result_true_or_false" . $question_id . $result_id . $value;
+        // $cacheKey = "your_answer_result_true_or_false" . $question_id . $result_id . $value;
 
-        return Cache::rememberForever($cacheKey, function () use ($question_id, $value, $result_id) {
+        // return Cache::rememberForever($cacheKey, function () use ($question_id, $value, $result_id) {
             $question_result = ExamResultAnswer::where("question_id", $question_id)
                 ->where('result_id', $result_id)
                 ->first();
@@ -633,7 +633,7 @@ if (!function_exists('your_answer_result_true_or_false')) {
             }
 
             return null;
-        });
+        // });
     }
 }
 if (!function_exists('exam_result_answer_true_or_false')) {
@@ -1198,10 +1198,7 @@ if (!function_exists('exam_islenildi')) {
             $unique_answered_ids = $answered_question_ids->intersect($required_question_ids);
             $missing_question_ids = $required_question_ids->diff($answered_question_ids);
 
-            if ($result_id == 56)
-                dd($missing_question_ids, $answered_question_ids, $required_question_ids, $exam_result);
-
-            if ($unique_answered_ids->count() === $required_question_ids->count() || count($missing_question_ids) < 3) {
+            if (($unique_answered_ids->count() === $required_question_ids->count() || count($missing_question_ids) < 3) && !empty($exam_result) && $exam_result->point>0) {
                 return true;
             } else {
                 return false;

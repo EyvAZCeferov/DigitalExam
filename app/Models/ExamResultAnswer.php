@@ -47,7 +47,7 @@ class ExamResultAnswer extends Model
 
     public function answer(): HasOne
     {
-        return $this->hasOne(ExamAnswer::class, 'id', 'answer_id');
+        return $this->hasOne(ExamResultAnswer::class, 'id', 'answer_id');
     }
 
     public function result_model(): HasOne

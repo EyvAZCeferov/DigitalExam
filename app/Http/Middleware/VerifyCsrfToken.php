@@ -12,15 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        '*/exam/finish',
-        '*/sections/*/store',
-        '/upload_image_editor',
-        '/qyestions_store',
-        '/get_question_data',
-        '*/authenticate',
-        '/remove_questionorsection_data',
-        '*/register-save',
-        '*/authenticate',
-        '/exams_set_question_value_on_session'
+        '*'
     ];
 }

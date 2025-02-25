@@ -68,21 +68,23 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">İmtahan nəticəsi</label>
-                                    <input type="text" value="{{ $result->exam->point ?? 0 * $result->correctAnswers() }}"
-                                        readonly name="name" class="form-control">
+                                    <input type="text"
+                                        value="{{ $result->exam->point ?? 0 * $result->correctAnswers() }}" readonly
+                                        name="name" class="form-control">
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="">İmtahan nəticəsi</label>
-                                    <input type="text" value="{{ $result->exam->point ?? 0 * $result->correctAnswers() }}"
-                                        readonly name="name" class="form-control">
+                                    <input type="text"
+                                        value="{{ $result->exam->point ?? 0 * $result->correctAnswers() }}" readonly
+                                        name="name" class="form-control">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row"> 
+                        <div class="row">
                             @php
                                 $index = 0;
                             @endphp
@@ -109,11 +111,15 @@
                                             <div class="row">
                                                 <div class="col-xs-6 col-md-3">İstifadəçinin cavabı</div>
                                                 <div class="col-xs-6 col-md-9">
+                                                    
                                                     @if ($answer->question->type === 1)
                                                         <p>{!! $answer->answer->answer !!}</p>
                                                     @elseif($answer->question->type === 2)
                                                         @php
-                                                            $user_answers = \App\Models\ExamAnswer::whereIn('id', $answer->answers)->get();
+                                                            $user_answers = \App\Models\ExamAnswer::whereIn(
+                                                                'id',
+                                                                $answer->answers,
+                                                            )->get();
                                                         @endphp
                                                         @foreach ($user_answers as $user_answer)
                                                             <p>{!! $user_answer->answer !!} </p>
@@ -134,7 +140,7 @@
                                                             <p>{!! $a->answer !!}</p>
                                                         @endforeach
                                                     @elseif($answer->question->type === 4)
-                                                        Salam
+                                                        
                                                     @else
                                                         {{-- <p>{!! $answer->question?->correctAnswer()?->answer !!}</p> --}}
                                                     @endif

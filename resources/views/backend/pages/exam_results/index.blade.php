@@ -107,7 +107,7 @@
                                             <td>{{ @$data->user?->name }}</td>
                                             <td>{{ @$data->exam?->category?->name['az_name'] }}</td>
                                             <td>{{ @$data->exam?->name['az_name'] }}</td>
-                                            <td>{{ @$data->exam?->point ?? 0 * $data->correctAnswers() }}</td>
+                                            <td>{{ @$data?->point ?? 0 * $data->correctAnswers() }}</td>
                                             <td>{{ @$data->created_at?->format('d F Y H:i') }}</td>
 
                                             <td class="text-right">
