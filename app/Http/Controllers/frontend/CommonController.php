@@ -461,7 +461,39 @@ class CommonController extends Controller
                                 session()->put('exam_id', $exam_result->exam_id);
                                 session()->put('user_id', $exam_result->user_id);
 
-                                return view("frontend.exams.exam_main_process.index", compact("exam", 'exam_result'));
+                                $questions = collect();
+
+                                if (session()->has('selected_section')) {
+                                    if (!empty($exam->sections) && count($exam->sections) > 0) {
+                                        $selectedsection = $exam->sections[session()->get('selected_section')];
+                                        $qesutions = $selectedsection->questions;
+
+                                        if ($selectedsection->question_count > 0) {
+                                            $availableQuestionCount = $qesutions->count();
+
+                                            if ($selectedsection->random == true) {
+                                                $questions = $qesutions->random(min($selectedsection->question_count, $availableQuestionCount));
+                                            } else {
+                                                $questions = $qesutions->take($selectedsection->question_count);
+                                            }
+                                        } else {
+                                            foreach ($qesutions as $qesution) {
+                                                $questions[] = $qesution;
+                                            }
+                                        }
+                                    } else {
+                                        $qesutions = $exam->sections->pluck('questions');
+                                        foreach ($qesutions as $qesution) {
+                                            foreach ($qesution as $qest) {
+                                                $questions[] = $qest;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    return abort(403, 'Administrator ilə əlaqə saxlayın');
+                                }
+
+                                return view("frontend.exams.exam_main_process.index", compact("exam", 'exam_result', 'questions'));
                             } else {
                                 return view("frontend.exams.exam_main_process.start_page", compact("exam", 'exam_start_pages'));
                             }
@@ -472,7 +504,41 @@ class CommonController extends Controller
                             session()->put('result_id', $exam_result->id);
                             session()->put('exam_id', $exam_result->exam_id);
                             session()->put('user_id', $exam_result->user_id);
-                            return view("frontend.exams.exam_main_process.index", compact('exam', 'exam_result'));
+
+
+                            $questions = collect();
+
+                            if (session()->has('selected_section')) {
+                                if (!empty($exam->sections) && count($exam->sections) > 0) {
+                                    $selectedsection = $exam->sections[session()->get('selected_section')];
+                                    $qesutions = $selectedsection->questions;
+
+                                    if ($selectedsection->question_count > 0) {
+                                        $availableQuestionCount = $qesutions->count();
+
+                                        if ($selectedsection->random == true) {
+                                            $questions = $qesutions->random(min($selectedsection->question_count, $availableQuestionCount));
+                                        } else {
+                                            $questions = $qesutions->take($selectedsection->question_count);
+                                        }
+                                    } else {
+                                        foreach ($qesutions as $qesution) {
+                                            $questions[] = $qesution;
+                                        }
+                                    }
+                                } else {
+                                    $qesutions = $exam->sections->pluck('questions');
+                                    foreach ($qesutions as $qesution) {
+                                        foreach ($qesution as $qest) {
+                                            $questions[] = $qest;
+                                        }
+                                    }
+                                }
+                            } else {
+                                return abort(403, 'Administrator ilə əlaqə saxlayın');
+                            }
+
+                            return view("frontend.exams.exam_main_process.index", compact('exam', 'exam_result', 'questions'));
                         } else {
                             $exam_result->delete();
                             return redirect()->back()->with('info', trans('additional.messages.examnotfound'));

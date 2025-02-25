@@ -31,39 +31,6 @@
     </script>
 @endpush
 @section('content')
-    @php
-        $questions = collect();
-
-        if (session()->has('selected_section')) {
-            if (!empty($exam->sections) && count($exam->sections) > 0) {
-                $selectedsection = $exam->sections[session()->get('selected_section')];
-                $qesutions = $selectedsection->questions;
-
-                if ($selectedsection->question_count > 0) {
-                    $availableQuestionCount = $qesutions->count();
-
-                    if ($selectedsection->random == true) {
-                        $questions = $qesutions->random(min($selectedsection->question_count, $availableQuestionCount));
-                    } else {
-                        $questions = $qesutions->take($selectedsection->question_count);
-                    }
-                } else {
-                    foreach ($qesutions as $qesution) {
-                        $questions[] = $qesution;
-                    }
-                }
-            } else {
-                $qesutions = $exam->sections->pluck('questions');
-                foreach ($qesutions as $qesution) {
-                    foreach ($qesution as $qest) {
-                        $questions[] = $qest;
-                    }
-                }
-            }
-        } else {
-            return abort(403, 'Administrator ilə əlaqə saxlayın');
-        }
-    @endphp
 
     <form action="" id="exam" class="d-block" method="POST">
         @csrf

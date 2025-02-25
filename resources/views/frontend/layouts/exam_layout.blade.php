@@ -90,7 +90,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{{ asset('front/assets/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" defer src="{{ asset('front/assets/js/eyvaz/vendor/jquery-ui/jquery-ui.min.js') }}">
     </script>
     <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
@@ -141,20 +141,20 @@
                 },
             };
 
-            // const observer = new MutationObserver((mutations) => {
-            //     mutations.forEach((mutation) => {
-            //         mutation.addedNodes.forEach((node) => {
-            //             if (node.tagName === "IMG" && !node.hasAttribute("loading")) {
-            //                 node.setAttribute("loading", "lazy");
-            //             }
-            //         });
-            //     });
-            // });
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.tagName === "IMG" && !node.hasAttribute("loading")) {
+                            node.setAttribute("loading", "lazy");
+                        }
+                    });
+                });
+            });
 
-            // observer.observe(document.body, {
-            //     childList: true,
-            //     subtree: true
-            // });
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
         });
     </script>
     @stack('js')
