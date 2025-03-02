@@ -68,7 +68,7 @@ class ExamResult extends Model
     {
         $time = 0;
         foreach ($this->answers as $answer) {
-            $time += $answer->time_reply;
+            $time += $answer->time_reply??0;
         }
         return $time;
     }

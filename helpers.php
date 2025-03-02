@@ -1055,7 +1055,7 @@ if (!function_exists('calc_this_exam')) {
         $model = null;
         $examresult = ExamResult::where('id', $result_id)->orderBy('id', 'DESC')->first();
         if (!empty($examresult) && isset($examresult->id)) {
-            $point = calculate_exam_result($examresult->id);
+            $point = calculate_exam_result($result_id);
             $examresult->update(['point' => $point ?? 0]);
             $model = $examresult;
         } else {
@@ -1167,7 +1167,9 @@ if (!function_exists('exams_buyed_or_not')) {
         $payment = Payments::where("exam_id", $exam_id)->where("user_id", $user_id)->orderByDesc('id')->where('payment_status', 1);
         $model = null;
         if ($exam->rebuy) {
-            $payment = $payment->whereNull('exam_result_id')->first();
+            $payment = $payment->whereHas("exam_result",function($q){
+                $q->whereNull("point");
+            })->first();
         } else {
             $payment = $payment->first();
         }

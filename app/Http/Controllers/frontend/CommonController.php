@@ -35,6 +35,7 @@ class CommonController extends Controller
     {
         try {
             // sleep(20);
+
             $result = collect();
             $nextsection = false;
             $nexturl = '';
@@ -44,7 +45,7 @@ class CommonController extends Controller
                 $result = ExamResult::where("id", $request->exam_result_id)->first();
                 if (!empty($result) && isset($result->id)) {
                     $result->update([
-                        'time_reply' => session()->get("time_reply") ?? 0 + $request->time_exam,
+                        'time_reply' => (session()->get("time_reply_".$result->id) ?? 0) + $request->time_exam,
                     ]);
                 } else {
                     $result = new ExamResult();
@@ -52,8 +53,10 @@ class CommonController extends Controller
                     $result->exam_id = $request->exam_id;
                     $result->payed = 1;
                     $result->continued = 1;
-                    $result->time_reply = session()->get("time_reply") ?? 0 + $request->time_exam;
+                    $result->time_reply = $request->time_exam;
                     $result->save();
+
+                    session()->put("time_reply_".$result->id, $result->time_reply);
                 }
 
 
@@ -97,7 +100,7 @@ class CommonController extends Controller
                                     $resultAnswer->question_id = $question->id;
                                     $resultAnswer->answer_id = $answer;
                                     $resultAnswer->result = $answer == $question->correctAnswer()?->id ? 1 : 0;
-                                    $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
+                                    $resultAnswer->time_reply = ($time_reply == 0 || $time_reply=="0") ? null : $time_reply;
                                     $resultAnswer->save();
                                 } else if ($question->type == 2) {
                                     $answer = array_map('intval', $answer);
@@ -108,7 +111,7 @@ class CommonController extends Controller
                                     $resultAnswer->question_id = $question->id;
                                     $resultAnswer->answers = $answer;
                                     $resultAnswer->result = $user_answer == $correct_answer ? 1 : 0;
-                                    $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
+                                    $resultAnswer->time_reply = ($time_reply == 0 || $time_reply=="0") ? null : $time_reply;
                                     $resultAnswer->save();
                                 } else if ($question->type == 3) {
                                     $resultAnswer->result_id = $result->id ?? $request->exam_result_id;
@@ -123,7 +126,7 @@ class CommonController extends Controller
                                     } else {
                                         $resultAnswer->result = 0;
                                     }
-                                    $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
+                                    $resultAnswer->time_reply = ($time_reply == 0 || $time_reply=="0") ? null : $time_reply;
                                     $resultAnswer->save();
                                 } else if ($question->type == 4) {
                                     if ($answer['answered'] == 1) {
@@ -151,7 +154,7 @@ class CommonController extends Controller
                                             $resultAnswer->question_id = $question->id;
                                             $resultAnswer->value = json_encode($newArray);
                                             $resultAnswer->result = $difference;
-                                            $resultAnswer->time_reply = $time_reply == 0 ? null : $time_reply;
+                                            $resultAnswer->time_reply = ($time_reply == 0 || $time_reply=="0") ? null : $time_reply;
                                             $resultAnswer->save();
                                         }
                                     }
@@ -206,7 +209,7 @@ class CommonController extends Controller
                                 ->where('question_id', $question->id)
                                 ->first();
                             if (empty($getresultanswer) && !isset($getresultanswer->id)) {
-
+                                $time_reply = $request->question_time_replies[$question->id] ?? 0;
                                 $value = session()->has($session_key) ? session()->get($session_key) : null;
                                 if (!empty($value)) {
                                     if ($question->type == 1 || $question->type == 5) {
@@ -216,7 +219,7 @@ class CommonController extends Controller
                                         $resultAnswer->question_id = $question->id;
                                         $resultAnswer->answer_id = $value;
                                         $resultAnswer->result = $value == $question->correctAnswer()?->id ? 1 : 0;
-                                        $resultAnswer->time_reply = 5;
+                                        $resultAnswer->time_reply = ($time_reply == 0 || $time_reply=="0") ? null : $time_reply;
                                         $resultAnswer->save();
                                     } else if ($question->type == 2) {
                                         $answer = array_map('intval', $value);
@@ -228,7 +231,7 @@ class CommonController extends Controller
                                         $resultAnswer->question_id = $question->id;
                                         $resultAnswer->answers = $answer;
                                         $resultAnswer->result = $user_answer == $correct_answer ? 1 : 0;
-                                        $resultAnswer->time_reply = 5;
+                                        $resultAnswer->time_reply = ($time_reply == 0 || $time_reply=="0") ? null : $time_reply;
                                         $resultAnswer->save();
                                     } else if ($question->type == 3) {
                                         $resultAnswer = new ExamResultAnswer();
@@ -243,7 +246,7 @@ class CommonController extends Controller
                                         } else {
                                             $resultAnswer->result = 0;
                                         }
-                                        $resultAnswer->time_reply = 5;
+                                        $resultAnswer->time_reply = ($time_reply == 0 || $time_reply=="0") ? null : $time_reply;
                                         $resultAnswer->save();
                                     } else if ($question->type == 4) {
                                         if ($value['answered'] == 1) {
@@ -267,7 +270,7 @@ class CommonController extends Controller
                                                 $resultAnswer->question_id = $question->id;
                                                 $resultAnswer->value = json_encode($newArray);
                                                 $resultAnswer->result = $difference;
-                                                $resultAnswer->time_reply = 5;
+                                                $resultAnswer->time_reply = ($time_reply == 0 || $time_reply=="0") ? null : $time_reply;
                                                 $resultAnswer->save();
                                             }
                                         }
@@ -284,13 +287,13 @@ class CommonController extends Controller
                     session()->put('result_id', $result_id);
                     session()->put('exam_id', $exam_id);
                     session()->put('user_id', $user_id);
-                    session()->put('time_reply', session()->get("time_reply") ?? 0 + $request->time_exam);
+                    session()->put("time_reply_".$result_id, (session()->get("time_reply_".$result_id) ?? 0) + ($request->time_exam ?? 0));
                     session()->put('selected_section', $request->selected_section + 1);
                     $nextsection = true;
                 } else {
                     $pointlast = session()->has('point') ? session()->get('point') : 0;
                     $point = number_format($pointlast + (!empty($result_id) ?  calculate_exam_result($result_id) : 0), 2);
-                    $time_reply = session()->has('time_reply') ? session()->get('time_reply') + $request->time_exam : $request->time_exam;
+                    $time_reply = session()->has('time_reply_'.$result_id) ? ((session()->get('time_reply_'.$result_id)??0) + ($request->time_exam??0)) : ($request->time_exam??0);
                     app()->setLocale(session()->get('changedLang'));
                     session()->put('language', session()->get('changedLang'));
                     session()->put('lang', session()->get('changedLang'));
@@ -307,7 +310,7 @@ class CommonController extends Controller
                         $result->update($updateData);
                     }
 
-                    session()->forget(['point', 'time_reply', 'selected_section']);
+                    session()->forget(['point', 'time_reply_'.($result_id??null), 'selected_section']);
                 }
 
                 $nexturl = '';
@@ -316,7 +319,7 @@ class CommonController extends Controller
                     $nexturl = route("user.exams.redirect_exam", ['exam_id' => $exam_id, 'selected_section' => session()->get('selected_section') ?? 0]);
                 } else {
                     if ($exam->show_result_user == true) {
-                        $point = calculate_exam_result($result_id);
+                        $point = calc_this_exam($result_id);
                         ExamResult::find($result_id)->update(['point' => $point]);
                         $nexturl = route("user.exam.resultpage", $result_id);
                         remove_repeated_result_answers($result_id);
@@ -358,6 +361,9 @@ class CommonController extends Controller
             ->orderByDesc('id')
             ->findOrFail($result_id);
 
+        $point = calculate_exam_result($exam_result->id);
+        $exam_result->update(['point' => $point]);
+
         return view('frontend.exams.resultpage', compact('exam_result'));
     }
     public function examResultPage($subdomain = null, $result_id)
@@ -383,6 +389,8 @@ class CommonController extends Controller
             if ($exam_result->point == 0) {
                 $point = customRound($exam_result->counted_point);
                 $exam_result->update(['point' => $point]);
+                $point = calc_this_exam($result_id);
+                $exam_result->update(['point' => $point]);
             }
 
             return view('frontend.exams.resultpage', compact('exam_result'));
@@ -394,7 +402,7 @@ class CommonController extends Controller
             ->orderByDesc('id')
             ->findOrFail($result_id);
 
-        calc_this_exam($exam_result->exam_id, $exam_result->user_id);
+        calc_this_exam($exam_result->id);
         $exam = $exam_result->exam;
 
         return view('frontend.exams.result', compact('exam_result', 'exam'));
@@ -404,7 +412,7 @@ class CommonController extends Controller
         $exam_result = ExamResult::with('answers.answer')
             ->orderByDesc('id')
             ->findOrFail($result_id);
-        calc_this_exam($exam_result->exam_id, $exam_result->user_id);
+        calc_this_exam($exam_result->id);
         $exam = $exam_result->exam;
         return view('frontend.exams.result', compact('exam_result', 'exam'));
     }
@@ -567,7 +575,7 @@ class CommonController extends Controller
     {
         try {
             session()->forget('point');
-            session()->forget('time_reply');
+            session()->forget('time_reply_');
             session()->forget('selected_section');
             $exam_result = ExamResult::where("exam_id", $request->get("exam_id"))
                 ->where('user_id', Auth::guard('users')->id())
@@ -610,7 +618,6 @@ class CommonController extends Controller
                 $exam_result->payed = $exam_price == 0 ? true : false;
                 $exam_result->save();
             }
-
             if ($exam_result->payed == true) {
                 return $this->redirect_exam($request);
             } else {
@@ -655,7 +662,7 @@ class CommonController extends Controller
                 'coupon_type' => !empty($coupon_code) && isset($coupon_code->type) ? $coupon_code->type ?? null : null,
             ];
             $apiscontroller = new ApisController();
-            $data = $apiscontroller->create_payment($payment_dat);
+            $data = $apiscontroller->create_and_redirect_pay($request);
             if (!empty($data) && isset($data)) {
                 return $data;
             } else {
@@ -972,6 +979,22 @@ class CommonController extends Controller
             $payment = Payments::where("transaction_id", $request->input("ID"))->first();
             if ($payment) {
                 $payment->update(['from_capital' => $request->all(), 'payment_status' => $request->input("STATUS") == 'FullyPaid' ? 1 : 2]);
+                $exam_result = ExamResult::where('exam_id',$payment->exam_id)->where("user_id",$payment->user_id)->orderBy("id",'DESC')->where("payed",0)->first();
+
+                if(!$exam_result){
+                    $exam_result=new ExamResult();
+                    $exam_result->exam_id=$payment->exam_id;
+                    $exam_result->user_id=$payment->user_id;
+                    $exam_result->point=null;
+                    $exam_result->payed=false;
+                    $exam_result->time_reply=null;
+                    $exam_result->save();
+                }
+
+                if ($exam_result) {
+                    $payment->update(['exam_result_id'=>$exam_result->id]);
+                    $exam_result->update(['payed' => true]);
+                }
             }
             return redirect(route("exams.show", $payment->exam->slug));
         } catch (\Exception $e) {

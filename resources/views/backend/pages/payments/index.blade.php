@@ -64,10 +64,10 @@
                                         </td>
                                         <td>{{ $data->amount }}₼</td>
                                         <td>
-                                            {{ $data->exam->name[app()->getLocale().'_name'] }}
+                                            {!! !empty($data->exam) ? $data->exam->name[app()->getLocale() . '_name'] : '<span class="text-danger text-center">Silinmiş imtahan</span>' !!}
                                         </td>
                                         <td>
-                                            {{ $data->user->name }}
+                                            {!! !empty($data->user) ? $data->user->name : '<span class="text-danger text-center">Silinmiş İstifadəçi</span>' !!}
                                         </td>
 
                                         <td class="text-right">

@@ -4,9 +4,9 @@
         onclick="select_answer('{{ $question->id }}','{{ $value->id }}','radio')">
         <div id="question_answer_one_{{ $question->id }}_{{ $value->id }}_radio"
             class="question_answer_one answers_{{ $question->id }}
-        @if (!empty($exam_result) && isset($exam_result->id) && exam_islenildi($exam_result->id)) @if (answer_result_true_or_false($question->id, $value->id) == true) true @else false @endif @endif
+        @if ($page=='result') @if (answer_result_true_or_false($question->id, $value->id) == true) true @else false @endif @endif
 
-        @if (!empty($exam_result) && isset($exam_result->id) && exam_islenildi($exam_result->id)) @if (your_answer_result_true_or_false($question->id, $value->id, $exam_result->id) == true) your_choise @endif @endif"
+        @if ($page=='result') @if (your_answer_result_true_or_false($question->id, $value->id, $exam_result->id) == true) your_choise @endif @endif"
             onclick="select_answer('{{ $question->id }}','{{ $value->id }}','radio')">
             <input type="radio" name="answers[{{ $value->question->exam_section_id }}]['{{ $question->id }}']"
                 value="{{ $value->id }}">

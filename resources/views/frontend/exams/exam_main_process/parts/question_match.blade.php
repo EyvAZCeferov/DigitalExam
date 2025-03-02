@@ -1,10 +1,4 @@
-@if (
-    !empty($exam_result) &&
-        isset($exam_result->id) &&
-        isset($exam_result->time_reply) &&
-        !empty($exam_result->time_reply) &&
-        exam_islenildi($exam_result->id) &&
-        (!empty($exam_result->point) || $exam_result->point != null || $exam_result->point == 0))
+@if ($page=='result')
     <p class="text-muted text-small my-2 text-center">@lang('additional.pages.exams.trueanswer')</p>
 @endif
 
@@ -47,7 +41,7 @@
 @else
     <p
         class="text-small my-2 text-center @if (
-                exam_islenildi($exam_result->id) &&
+                $page=='result' &&
                 !empty($exam_result->answers->where('question_id', $question->id)->first()) &&
                 $exam_result->answers->where('question_id', $question->id)->first() != null &&
                 !empty($exam_result->answers->where('question_id', $question->id)->first()->value)) @if (answer_result_true_or_false(

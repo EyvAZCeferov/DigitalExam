@@ -227,7 +227,8 @@ class ApisController extends Controller
         try {
             $payment = Payments::where('user_id', Auth::guard('users')->id())
                 ->where("exam_id", $request->input("exam_id"))
-                ->where("payment_status", 0)->first();
+                ->where("payment_status", 0)
+                ->orderBy('id', 'DESC')->first();
             if (empty($payment) && !isset($payment->id)) {
                 $payment = new Payments();
                 $payment->user_id = Auth::guard('users')->id();

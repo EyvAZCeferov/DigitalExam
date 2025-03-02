@@ -4,8 +4,8 @@
         onclick="select_answer('{{ $question->id }}','{{ $value->id }}','checkbox')">
         <div id="question_answer_one_{{ $question->id }}_{{ $value->id }}_checkbox"
             class="question_answer_one answers_{{ $question->id }}
-        @if (exam_islenildi($exam_result->id)) @if (answer_result_true_or_false($question->id, $value->id) == true) true @else false @endif @endif
-        @if (exam_islenildi($exam_result->id)) @if (your_answer_result_true_or_false($question->id, $value->id, $exam_result->id) == true) your_choise @endif @endif"
+        @if ($page=='result') true @else false @endif @endif
+        @if ($page=='result') @if (your_answer_result_true_or_false($question->id, $value->id, $exam_result->id) == true) your_choise @endif @endif"
             onclick="select_answer('{{ $question->id }}','{{ $value->id }}','checkbox')">
             <input type="checkbox" name="answers[{{ $value->question->exam_section_id }}]['{{ $question->id }}'][]"
                 value="{{ $value->id }}">

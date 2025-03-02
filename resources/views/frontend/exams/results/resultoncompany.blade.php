@@ -75,8 +75,7 @@
                                             class="text-success">{{ $exam->point }}</span>
                                         &nbsp;&nbsp;@lang('additional.pages.exams.timespent'):
                                         <div class="hour_area d-inline-block text text-info">
-                                            <span id="minutes">{{ floor($result->time_reply / 60) % 60 }}</span>:<span
-                                                id="seconds">{{ $result->time_reply % 60 }}</span>
+                                            <span id="minutes">{{ convertToMinutesAndSeconds($result->timereplyall()) }}</span>
                                         </div>
                                     </div>
                                 </div>

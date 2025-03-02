@@ -79,6 +79,7 @@
                 'exam' => $exam,
                 'questions' => $questions,
                 'exam_result' => $exam_result,
+                'page'=>'exam'
             ])
 
             @include('frontend.exams.exam_main_process.parts.footer', [
@@ -214,6 +215,7 @@
 @push('js')
     <script src="{{ asset('front/assets/js/exam_classes.js') }}"></script>
     <script src="{{ asset('front/assets/js/exam.js?v='.time()) }}"></script>
+    {{-- <script src="{{ asset('front/assets/js/unminified_exam.js?v='.time()) }}"></script> --}}
 
     <script>
         window.addEventListener('load', function() {

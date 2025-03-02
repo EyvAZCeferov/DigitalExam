@@ -103,7 +103,7 @@
                      <div class="content_exam_info mt-3 @if ($value->type == 3) classcenter @endif"
                          id="content_exam_info" style="flex-direction: column">
                          @if (isset($page))
-                         {!! $value->question !!}
+                             {!! $value->question !!}
                          @else
                              {!! str_replace('<img', '<img loading="lazy"', $value->question) !!}
                          @endif
@@ -114,22 +114,26 @@
                          @include('frontend.exams.exam_main_process.parts.question_radio', [
                              'question' => $value,
                              'exam_result' => $exam_result,
+                             'page' => $page,
                          ])
                      @elseif($value->type == 2)
                          @include('frontend.exams.exam_main_process.parts.question_checkbox', [
                              'question' => $value,
                              'exam_result' => $exam_result,
+                             'page' => $page,
                          ])
                      @elseif($value->type == 3)
                          @include('frontend.exams.exam_main_process.parts.question_textbox', [
                              'question' => $value,
                              'exam_result' => $exam_result,
                              'exam' => $exam_result->exam,
+                             'page' => $page,
                          ])
                      @elseif($value->type == 4)
                          @include('frontend.exams.exam_main_process.parts.question_match', [
                              'question' => $value,
                              'exam_result' => $exam_result,
+                             'page' => $page,
                          ])
                      @endif
                  </div>

