@@ -49,6 +49,7 @@
             'exam' => $exam,
             'questions' => $exam->getquestions($exam_result),
             'exam_result' => $exam_result,
+            'page'=>'result',
         ])
 
         <div id="loader_for_sections" class="loader_for_sections">

@@ -320,7 +320,6 @@ class CommonController extends Controller
                 } else {
                     if ($exam->show_result_user == true) {
                         $point = calc_this_exam($result_id);
-                        ExamResult::find($result_id)->update(['point' => $point]);
                         $nexturl = route("user.exam.resultpage", $result_id);
                         remove_repeated_result_answers($result_id);
                     } else {
@@ -386,11 +385,8 @@ class CommonController extends Controller
                 ->orderByDesc('id')
                 ->findOrFail($result_id);
 
-            if ($exam_result->point == 0) {
-                $point = customRound($exam_result->counted_point);
-                $exam_result->update(['point' => $point]);
+            if (!empty($exam_result) && $exam_result->point == 0) {
                 $point = calc_this_exam($result_id);
-                $exam_result->update(['point' => $point]);
             }
 
             return view('frontend.exams.resultpage', compact('exam_result'));

@@ -13,7 +13,7 @@
     </div>
     <div class="questions_row">
         @foreach ($questions as $key => $value)
-            <button class="btn btn-sm btn-question not_answered footer_question_buttons  @if(isset($exam_result) && !empty($exam_result)) f{{ exam_result_answer_true_or_false_new($value->id,$exam_result->id) }} @endif " type="button"
+            <button class="btn btn-sm btn-question not_answered footer_question_buttons  @if($page=='result') f{{ exam_result_answer_true_or_false_new($value->id,$exam_result->id) }} @endif " type="button"
             data-key="{{ $value->id }}"
                 id="question_row_button_{{ $value->id }}"
                 onclick="getquestion('{{ $value->id }}')">{{ $loop->iteration }}</button>
@@ -29,7 +29,7 @@
 </div>
 <div class="footer_buttons">
     <div>
-        {{ auth('users')->user()->name }}
+        {{ $exam_result->user->name }}
     </div>
     <button class="btn btn-primary question_button" type="button" onclick="togglequestions()">
         <i class="fa fa-circle-question"></i>

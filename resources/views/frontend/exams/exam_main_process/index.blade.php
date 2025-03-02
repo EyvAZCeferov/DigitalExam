@@ -85,6 +85,8 @@
             @include('frontend.exams.exam_main_process.parts.footer', [
                 'exam' => $exam,
                 'questions' => $questions,
+                'page'=>'exam',
+                'exam_result'=>$exam_result
             ])
 
             {{-- Desmos Calculator --}}
