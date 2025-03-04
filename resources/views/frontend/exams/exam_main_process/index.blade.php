@@ -215,7 +215,7 @@
 
 @endsection 
 @push('js')
-    <script src="{{ asset('front/assets/js/exam_classes.js') }}"></script>
+    <script src="{{ asset('front/assets/js/exam_classes.js?v='.time()) }}"></script>
     <script src="{{ asset('front/assets/js/exam.js?v='.time()) }}"></script>
     {{-- <script src="{{ asset('front/assets/js/unminified_exam.js?v='.time()) }}"></script> --}}
 
